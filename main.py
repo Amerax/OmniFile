@@ -1,4 +1,6 @@
 import os
+import tkinter as tk
+from tkinter import filedialog, messagebox
 from PIL import Image
 
 def convert_image(input_path, target_format):
@@ -42,6 +44,28 @@ def main():
     
     convert_image(input_path, target_format)
     input("\nPress Enter to exit...") # keeps the window open 
+
+# simple gui interface 
+
+root = tk.Tk()
+root.title("Simple Image Converter")
+root.geometry("420x180")
+root.resizable(False, False)
+
+tk.Label(root, text="Image File").pack(pady=(10, 0))
+
+path_entry = tk.Entry(root, width=45)
+path_entry.pack()
+
+tk.Button(root, text="Browse", command=browse_file).pack(pady=5)
+tk.Label(root, text="Convert To").pack()
+format_var = tk.StringVar(value="png")
+formats = ["jpg", "png", "webp"]
+tk.OptionMenu(root, format_var, *formats).pack()
+
+tk.Button(root, text="Convert", width=15, command=convert).pack(pady=15)
+
+root.mainloop()
 
 if __name__ == "__main__":
     main()
