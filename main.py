@@ -94,9 +94,12 @@ def convert():
                 raise Exception("JSON can only convert to CSV or XLSX.")
 
         else:
-            raise Exception("Unsupported file type.")
+            raise Exception("Unsupported file type sorry.")
 
-        messagebox.showinfo("Done", "Conversion complete!")
+        messagebox.showinfo(
+    "Done",
+    f"Conversion complete!\n\nSaved to:\n{out}"
+)
 
     except Exception as e:
         messagebox.showerror("Error", str(e))
