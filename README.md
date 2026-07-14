@@ -7,6 +7,19 @@ I made this because converting files online is soooo annoying and websites onlin
 
 So therefore I made my own software .exe that can do all of this locally on your computer, so it's 100% safe, offline, open source, and also unlimited and istaneous with no ads. 
 
+At first I was gonna make this purely terminal based but I decided to learn some tkinter gui just for this and I think it's much better now with a gui!
+
+Libraries Used + What They Do
+
+os: Standard library. Handles file paths and computer folders.
+tkinter: Standard library. Creates the visual window, buttons, and pop-ups.
+PIL (Pillow): Third party library. Opens, edits, and saves images.
+moviepy: Third party library. Edits and processes video and audio files.
+pandas: Third party library. Reads and writes data (like Excel or CSV sheets).
+
+If you are gonna run the source code without the .exe in your own ide make sure you download these libaries you can use this command:
+pip install pillow moviepy pandas
+
 Here are supported file conversions:
 ---------------------------------
 
