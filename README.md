@@ -9,23 +9,23 @@ So therefore I made my own software .exe that can do all of this locally on your
 
 Here are supported file conversions:
 
-Images: JPG, PNG, WEBP
-
-Audio: MP3 <-> WAV
-
-Video: MP4 -> MP4, MP3, WAV
-
-CSV <-> XLSX
-
-CSV <-> JSON
-
-XLSX <-> CSV
-
-XLSX <-> JSON
-
-JSON <-> CSV
-
-JSON <-> XLSX
+  Images: JPG, PNG, WEBP
+  
+  Audio: MP3 <-> WAV
+  
+  Video: MP4 -> MP4, MP3, WAV
+  
+  CSV <-> XLSX
+  
+  CSV <-> JSON
+  
+  XLSX <-> CSV
+  
+  XLSX <-> JSON
+  
+  JSON <-> CSV
+  
+  JSON <-> XLSX
 
 Demo Image:
 
