@@ -8,6 +8,7 @@ I made this because converting files online is soooo annoying and websites onlin
 So therefore I made my own software .exe that can do all of this locally on your computer, so it's 100% safe, offline, open source, and also unlimited and istaneous with no ads. 
 
 Here are supported file conversions:
+---------------------------------
 
   Images: JPG, PNG, WEBP
   
@@ -26,6 +27,8 @@ Here are supported file conversions:
   JSON <-> CSV
   
   JSON <-> XLSX
+  
+------------------------------
 
 Demo Image:
 
