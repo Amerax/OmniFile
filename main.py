@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from PIL import Image
 from moviepy import AudioFileClip, VideoFileClip
+import pandas as pd
 
 selected_file = ""
 
@@ -19,16 +20,11 @@ def convert():
 
     target = format_var.get().lower()
     ext = os.path.splitext(selected_file)[1].lower()
+    out = os.path.splitext(selected_file)[0] + "." + target
 
     try:
-        # image conversion
         if ext in [".jpg", ".jpeg", ".png", ".webp"]:
-            formats = {
-                "jpg": "JPEG",
-                "jpeg": "JPEG",
-                "png": "PNG",
-                "webp": "WEBP"
-            }
+            formats = {"jpg":"JPEG","jpeg":"JPEG","png":"PNG","webp":"WEBP"}
 
             if target not in formats:
                 raise Exception("Invalid image format.")
@@ -38,47 +34,72 @@ def convert():
             if target == "jpg" and img.mode == "RGBA":
                 img = img.convert("RGB")
 
-            out = os.path.splitext(selected_file)[0] + "." + target
             img.save(out, formats[target])
 
-        # audio conversion
         elif ext in [".mp3", ".wav"]:
-            out = os.path.splitext(selected_file)[0] + "." + target
-
             clip = AudioFileClip(selected_file)
 
             if target == "mp3":
                 clip.write_audiofile(out)
-
             elif target == "wav":
                 clip.write_audiofile(out, codec="pcm_s16le")
-
             else:
-                raise Exception("Invalid audio format")
+                raise Exception("Invalid audio formae.")
 
             clip.close()
 
-        # video conversion handler
         elif ext == ".mp4":
-            if target != "mp4":
-                raise Exception("MP4 can only convert to MP4.")
-
-            out = os.path.splitext(selected_file)[0] + "_copy.mp4"
-
             clip = VideoFileClip(selected_file)
-            clip.write_videofile(out)
+
+            if target == "mp4":
+                clip.write_videofile(out)
+            elif target == "mp3":
+                clip.audio.write_audiofile(out)
+            elif target == "wav":
+                clip.audio.write_audiofile(out, codec="pcm_s16le")
+            else:
+                clip.close()
+                raise Exception("Invalid vido format")
+
             clip.close()
+
+        elif ext == ".csv":
+            df = pd.read_csv(selected_file)
+
+            if target == "xlsx":
+                df.to_excel(out, index=False)
+            elif target == "json":
+                df.to_json(out, orient="records", indent=4)
+            else:
+                raise Exception("CSV can only convert to XLSX or JSON, read redme to double check what you can convert to.")
+
+        elif ext == ".xlsx":
+            df = pd.read_excel(selected_file)
+
+            if target == "csv":
+                df.to_csv(out, index=False)
+            elif target == "json":
+                df.to_json(out, orient="records", indent=4)
+            else:
+                raise Exception("Excel can only convert to csv or json.")
+
+        elif ext == ".json":
+            df = pd.read_json(selected_file)
+
+            if target == "csv":
+                df.to_csv(out, index=False)
+            elif target == "xlsx":
+                df.to_excel(out, index=False)
+            else:
+                raise Exception("JSON can only convert to CSV or XLSX.")
 
         else:
-            raise Exception("Unsupported file. Please check readme for supported types")
+            raise Exception("Unsupported file type.")
 
         messagebox.showinfo("Done", "Conversion complete!")
 
     except Exception as e:
         messagebox.showerror("Error", str(e))
-
-
-# gui
 
 root = tk.Tk()
 root.title("Simple File Converter")
@@ -89,18 +110,14 @@ tk.Button(root, text="Browse File", command=browse).pack(pady=10)
 
 file_label = tk.Label(root, text="No file selected")
 file_label.pack()
-
 format_var = tk.StringVar(value="png")
 
-tk.Label(root, text="Output Format").pack(pady=(10, 0))
+tk.Label(root, text="Output Format").pack(pady=(10,0))
 
 options = [
-    "jpg",
-    "png",
-    "webp",
-    "mp3",
-    "wav",
-    "mp4"
+    "jpg","png","webp",
+    "mp3","wav","mp4",
+    "csv","xlsx","json"
 ]
 
 tk.OptionMenu(root, format_var, *options).pack()
