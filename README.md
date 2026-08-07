@@ -20,6 +20,8 @@ pandas: Third party library. Reads and writes data (like Excel or CSV sheets).
 If you are gonna run the source code without the .exe in your own ide make sure you download these libaries you can use this command:
 pip install pillow moviepy pandas
 
+To Install: Please download the .exe from the v1 releases tab. Simply download it on windows and run it, either by clicking on the file or cd through terminal. Otherwise you can clone the repo or copy just copy and paste the python source code and run it in your ide if you would like with the libaries above. 
+
 Here are supported file conversions:
 ---------------------------------
 
