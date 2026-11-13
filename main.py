@@ -1,7 +1,7 @@
 import os
 import tkinter as tk
 from tkinter import filedialog, messagebox
-from PIL import Image
+from PIL import Image as Image
 from moviepy import AudioFileClip, VideoFileClip
 import pandas as pd
 
