@@ -9,7 +9,7 @@ So therefore I made my own software .exe that can do all of this locally on your
 
 At first I was gonna make this purely terminal based but I decided to learn some tkinter gui just for this and I think it's much better now with a gui!
 
-Libraries Used + What They Do
+Libraries Used + What They Do:
 
 os: Standard library. Handles file paths and computer folders.
 tkinter: Standard library. Creates the visual window, buttons, and pop-ups.
